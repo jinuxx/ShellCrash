@@ -412,7 +412,7 @@ authentication: ["$authentication"]
 allow-lan: true
 mode: Rule
 log-level: info
-ipv6: true
+ipv6: false
 external-controller: :$db_port
 external-ui: ui
 secret: $secret
