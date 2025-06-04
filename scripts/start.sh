@@ -1198,6 +1198,8 @@ start_nft_route() { #nftables-route通用工具
 	[ "$1" = 'prerouting' ] && {
   		# 部分机器，只代理常用端口
   		nft add rule inet shellcrash $1 ip saddr {10.10.10.10} tcp dport != {22,80,143,194,443,465,587,853,993,995,5222,8080,8443} return
+		nft add rule inet shellcrash $1 ip saddr 10.10.10.10 tcp sport 62244 return
+		nft add rule inet shellcrash $1 ip saddr 10.10.10.10 udp sport 62244 return
 		[ "$macfilter_type" != "白名单" ] && {
 			[ -s "$CRASHDIR"/configs/mac ] && {
 				MAC=$(awk '{printf "%s, ",$1}' "$CRASHDIR"/configs/mac)
